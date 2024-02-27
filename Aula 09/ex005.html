@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeiros passos com DOM</title>
+    <style>
+        body{
+            background-color: rgb(182, 106, 118);
+            font: normal 18pt Arial;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Iniciando os estudos com DOM</h1>
+    <p>Aqui vai o resultado</p>
+    <p>Aprendendo a usar <strong>DOM</strong> em JavaScript</p>
+    <div id="msg">Clique em mim</div>
+    <script>
+        /*
+        window.document.write('Olá, Mundo'); //mostra algo escrito
+        window.document.write(window.navigator.appName); //mostra o appName do navegador
+        window.document.write(window.document.URL) // mostra a url
+        var corpo = window.document.body;
+        var p1 = window.document.getElementsByTagName('p')[1];
+        window.document.write('Está escrito assim: ' + p1.innerText);
+        window.document.write(p1.innerHTML);
+        p1.style.color = 'red';
+        corpo.style.background = 'blue';
+        var d = window.document.getElementById('msg');
+        d.style.background = 'green';
+        d.innerText = 'Estou aguardando'; //muda o que está escrito na variável
+        window.document.getElementById('msg').innerText = 'Olá'; // também muda, mas é um comando mais longo
+        var e = window.document.getElementsByName('msg')[0];
+        e.style.color = 'red';
+
+       var f = window.document.getElementsByClassName('msg')[0];
+       f.style.color = 'red';
+       */
+
+       var g = window.document.querySelector('div#msg');
+       g.style.color = 'red';
+    </script>
+</body>
+</html>

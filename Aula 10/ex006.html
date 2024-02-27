@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos DOM</title>
+    <style>
+        #area{
+            background-color: rgb(24, 160, 245);
+            color: aliceblue;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            font-size: 25pt;
+        }
+    </style>
+</head>
+<body>
+    <div id="area">
+        Interaja...
+    </div>
+    <script>
+        var b = 0;
+        var a = window.document.getElementById('area');
+        a.addEventListener('click', clicar);
+        function clicar(){
+            if (b==0){
+                a.innerText = 'Você clicou!'; 
+                b++;
+            } else{
+                b = 0;
+                a.innerText = 'Interaja...';
+            }
+        }
+    </script>
+</body>
+</html>
