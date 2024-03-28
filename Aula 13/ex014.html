@@ -33,6 +33,7 @@
             width: 450px;
             border-radius: 20px;
             padding: 10px;
+            box-shadow: 10px 5px 5px 3px rgba(0, 0, 0, 0.352);
         }
 
         #horas{
@@ -49,13 +50,13 @@
         }
 
         footer{
-            margin-top: 5px;
+            margin-top: 15px;
             font-size: 20px;
-            color: rgb(51, 80, 185);
+            color: rgb(255, 255, 255);
         }
     </style>
 </head>
-<body>
+<body onload="carregar()">
     <header>
         <h1>Hora do Dia</h1>
     </header>
@@ -66,25 +67,27 @@
     <footer>@CursoemVideo</footer>
 
     <script>
-        var agora = new Date();
-        var hora = 18;
-        var h = document.getElementById("hora");
-        var body = document.getElementsByTagName('body')[0];
-        var imagem = document.getElementById('imagem');
-        h.innerText = hora;
+        function carregar(){
+            var agora = new Date();
+            var hora = agora.getHours();
+            var h = document.getElementById("hora");
+            var body = document.getElementsByTagName('body')[0];
+            var imagem = document.getElementById('imagem');
+            h.innerText = hora;
 
-        if (hora <= 10){
-            body.style.background = "rgb(185, 51, 131)";
-            imagem.style.backgroundImage = "url(imagens/amanhecer.jpg)";
-        } else if (hora <= 12){
-            body.style.background = "rgb(51, 125, 185)";
-            imagem.style.backgroundImage = "url(imagens/dia.jpg)";
-        } else if (hora <= 18){
-            body.style.background = "rgb(185, 78, 51)";
-            imagem.style.backgroundImage = "url(imagens/pordosol.jpg)";
-        } else{
-            body.style.background = "rgb(51, 80, 185)";
-            imagem.style.backgroundImage = "url(imagens/noite.jpg)";
+            if (hora <= 10){
+                body.style.background = "rgb(185, 51, 131)";
+                imagem.style.backgroundImage = "url(imagens/amanhecer.jpg)";
+            } else if (hora <= 12){
+                body.style.background = "rgb(51, 125, 185)";
+                imagem.style.backgroundImage = "url(imagens/dia.jpg)";
+            } else if (hora <= 18){
+                body.style.background = "rgb(185, 78, 51)";
+                imagem.style.backgroundImage = "url(imagens/pordosol.jpg)";
+            } else{
+                body.style.background = "rgb(51, 80, 185)";
+                imagem.style.backgroundImage = "url(imagens/noite.jpg)";
+            }
         }
     </script>
 </body>

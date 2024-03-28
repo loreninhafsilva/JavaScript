@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Idade</title>
+    <style>
+        *{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            background-color: rgb(82, 82, 217);
+        }
+        section{
+            background-color: white;
+        }
+        h1{
+            color: aliceblue;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        section{
+            width: 450px;
+            border-radius: 20px;
+            padding-top: 20px;
+            padding-left: 15px;
+            padding-bottom: 20px;
+            box-shadow: 5px 5px 5px 3px rgba(0, 0, 0, 0.352);
+            
+        }
+
+        #horas{
+            font-size: 22px;
+            margin-top: 10%;
+            margin-bottom: 5%;
+        }
+
+        #imagem{
+            margin-top: 15px;
+            height: 300px;
+            width: 300px;
+            border-radius: 50%;
+        }
+
+        footer{
+            margin-top: 15px;
+            font-size: 20px;
+            color: rgb(255, 255, 255);
+        }
+
+        #alinhar{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="alinhar">
+        <header>
+            <h1>Verificador de Idade</h1>
+        </header>
+        <section>
+            Ano de Nascimento <input type="number" name="txtano" id="txtano" min="0">
+            <br><br>
+
+            Sexo <input type="radio" name="radio" id="Maculino"> Masculino 
+            <input type="radio" name="radio" id="Feminino" checked> Feminino
+            <br><br>
+
+            <input type="button" value="Verificar" onclick="verificar()">
+            <br><br>
+            <p>Preencha os dados acima para ver o resultado!</p>
+        </section>
+        <footer>@CursoemVideo</footer>
+    </div>
+
+    <script>
+        function verificar(){
+            var data = new Date();
+            var ano = data.getFullYear();
+            var fano = document.getElementById('txtano');
+            var res = document.getElementsByTagName('p')[0];
+            var img = document.createElement('img');
+            img.setAttribute('id','foto');
+            
+            if (fano.value.length == 0 || fano.value > ano){
+                window.alert("[ERRO] Verifique os dados e tente novamente");
+            } else {
+                var fsex = document.getElementsByName('radio');
+                var idade = ano - fano.value;
+                var genero = '';
+
+                if (fsex[0].checked){
+                    genero = 'Homem';
+                    if(idade >=0 && idade < 10){
+                        img.setAttribute('src', 'imagens/menino-crianca.avif');
+                    } else if (idade < 21){
+                        img.setAttribute('src', 'imagens/menino-jovem.jpg');
+                    } else if (idade < 50){
+                        img.setAttribute('src', 'imagens/menino-adulto.jpg');
+                    } else{
+                        img.setAttribute('src', 'imagens/menino-idoso.jpg');
+                    }
+                } else if (fsex[1].checked) {
+                    genero = 'Mulher';
+                    if(idade >=0 && idade < 10){
+                        img.setAttribute('src', 'imagens/menina-crianca.jpg');
+                    } else if (idade < 21){
+                        img.setAttribute('src', 'imagens/menina-jovem.jpg');
+                    } else if (idade < 50){
+                        img.setAttribute('src', 'imagens/menina-adulto.jpg');
+                    } else{
+                        img.setAttribute('src', 'imagens/menina-idoso.jpg');
+                    }
+                }
+                res.style.textAlign = 'center';
+                res.innerHTML = `Detectamos ${genero} com ${idade} anos`;
+                img.style.borderRadius = "50%";
+                img.style.width = "250px";
+                res.appendChild(img);
+            }
+        }
+    </script>
+</body>
+</html>
