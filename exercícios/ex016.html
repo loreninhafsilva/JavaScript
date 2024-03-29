@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador</title>
+    <style>
+        *{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            background-color: rgb(82, 82, 217);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1{
+            color: aliceblue;
+            text-align: center;
+            margin-top: 20%;
+            margin-bottom: 20%;
+        }
+        section{
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            width: 450px;
+            border-radius: 20px;
+            padding: 10px;
+            box-shadow: 10px 5px 5px 3px rgba(0, 0, 0, 0.352);
+        }
+
+        footer{
+            margin-top: 15px;
+            font-size: 20px;
+            color: rgb(255, 255, 255);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vamos contar !</h1>
+    </header>
+    <section>
+       Início: <input type="number" name="inicio" id="inicio">
+       <br>
+       Fim: <input type="number" name="fim" id="fim">
+       <br>
+       Passo: <input type="number" name="passo" id="passo">
+       <br>
+       <input type="button" value="Contar" onclick="contar()"><br>
+       <p id="res">Prepare-se para iniciar a contagem...</p><br>
+    </section>
+    <footer>@CursoemVideo</footer>
+
+    <script>
+        function contar(){
+        var i = document.getElementById('inicio');
+        var f = document.getElementById('fim');
+        var p = document.getElementById('passo');
+        var res = document.getElementById('res');
+
+        if(i.value.length == 0 || f.value.length == 0 || p.value.length == 0 ) {
+            res.innerHTML = 'Impossível contar !';
+            //window.alert('[ERRO] Faltam dados');
+        } else {
+            res.innerHTML = 'Contando: <br> ';
+            var i = Number(i.value);
+            var f = Number(f.value);
+            var p = Number(p.value);
+            if (p <= 0){
+                res.innerHTML = 'Passo inválido! Considerando PASSO 1: <br>';
+                p = 1;
+            }
+            if(i < f){
+                for (var c = i; c <= f; c += p){
+                res.innerHTML += `${c}👉`;
+                }
+            } else{
+                for (var c = i; c >= f; c -= p){
+                res.innerHTML += `${c}👉`;
+                }
+            }
+            res.innerHTML += `🏁`;
+            
+        }
+    }
+    </script>
+</body>
+</html>
