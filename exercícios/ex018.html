@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador</title>
+    <style>
+        *{
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            background-color: rgb(82, 82, 217);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1{
+            color: aliceblue;
+            text-align: center;
+            margin-top: 20%;
+            margin-bottom: 20%;
+        }
+        section{
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            width: 450px;
+            border-radius: 20px;
+            padding: 10px;
+            box-shadow: 10px 5px 5px 3px rgba(0, 0, 0, 0.352);
+        }
+
+        footer{
+            margin-top: 15px;
+            font-size: 20px;
+            color: rgb(255, 255, 255);
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Analisador de Números</h1>
+    </header>
+    <section>
+      <div>
+          Número entre 1 e 100: <input type="number" name="fnum" id="fnum"><br>
+          <br><input type="button" value="Adicionar" onclick="adicionar()"><br>
+          <br><select name="flista" id="flista" size="6" style="width: 200px;"></select>
+          <br><br><input type="button" value="Finalizar" onclick="finalizar()">
+      </div>
+      <div id="res"></div>
+    </section>
+    <footer>@CursoemVideo</footer>
+
+    <script>
+        var num = document.getElementById('fnum');
+        var lista = document.getElementById('flista');
+        var res = document.getElementById('res');
+        var valores = [];
+
+        function isNumero(n){
+            if(Number(n) >= 1 && Number(n) <= 100){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function inLista(n, l){
+            if(l.indexOf(Number(n)) != -1){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function adicionar(){
+            if(isNumero(num.value) && !inLista(num.value, valores)){
+                var n = Number(num.value);
+                valores.push(n);
+                var item = document.createElement('option');
+                item.text = `O número ${n} foi adicionado.`;
+                lista.appendChild(item);
+                res.innerHTML = '';
+            } else {
+                window.alert('Valor inválido ou já encontrado na lista');
+            }
+            num.value = '';
+            num.focus();
+        }
+
+        function finalizar(){
+            if(valores.length == 0){
+                window.alert('Adicione valores antes de finalizar!');
+            } else {
+                var total = valores.length;
+                var maior = valores[0];
+                var menor = valores[0]; 
+                var soma = 0;
+                var media = 0;
+                
+                for(var i in valores){
+                    soma+=valores[i];
+                }
+
+                media = soma/total;
+                
+                for(var i in valores){
+                    if(valores[i] > maior){
+                        maior = valores[i];
+                    }
+                    if(valores [i] < menor){
+                        menor = valores[i];
+                    }
+                }
+
+                res.innerHTML = '';
+                res.innerHTML += `<br>
+                <p>Ao todo, temos ${total} números cadastrados.</p><br>
+                <p>O valor ${menor} é o menor informado.</p><br>
+                <p>O valor ${maior} é o maior informado.</p><br>
+                <p>A soma de todos os valores é: ${soma}</p><br>
+                <p>A média de todos os valores é: ${media}</p><br>`
+            }
+        }
+    </script>
+</body>
+</html>
